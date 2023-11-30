@@ -12,7 +12,7 @@ class ImportController extends Controller
     public function import(Request $request)
     {
         $this->validate($request, [
-            'file' => 'required|mimes:csv,xls,xlsx'
+            'file' => 'required|mimes:csv,xls,xlsx|max:500000'
         ]);
 
         try {

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nisn')->unique();
             $table->string('name');
+            $table->string('username')->unique()->nullable();
             $table->string('gender')->nullable();
             $table->string('voting')->default(false);
             $table->foreignId('candidate_id')->nullable();

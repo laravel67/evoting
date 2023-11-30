@@ -1,0 +1,41 @@
+<form action="{{ route('auth.user') }}" method="POST" class="sign-in-form">
+    @csrf
+    <img src="{{ asset('images/log.svg') }}" class="image" width="300" height="200">
+    <br>
+    <p class="title">{{ __('Masuk Ke Halaman Voting') }}</p>
+    <div class="input-field @error('nisn') is-invalid @enderror">
+        <i class="fa fa-user"></i>
+        <input type="text" name="nisn" placeholder="Nomor Induk Siswa Nasional" value="{{ old('nisn') }}" required
+            autofocus autocomplete="off">
+    </div>
+    @error('nisn')
+    <div class="invalid-feedback"> {{ $message }} </div>
+    @enderror
+    <div class="input-field @error('password') is-invalid @enderror">
+        <i class="fas fa-lock"></i>
+        <input type="password" name="password" placeholder="Kata Sandi" required>
+        <label class="form-check-label" for="showPassword">
+            <input class="form-check-input" type="checkbox" id="showPassword">
+            <span>show</span>
+        </label>
+    </div>
+    @error('password')
+    <div class="invalid-feedback"> {{ $message }} </div>
+    @enderror
+    <button class="btn solid" type="submit"> <i class="fa fa-sign-in fa-lg"></i>
+        {{ __('Masuk') }}</button>
+</form>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const passwordInput = document.querySelector('input[name="password"]');
+    const showPasswordCheckbox = document.querySelector('#showPassword');
+    
+    showPasswordCheckbox.addEventListener('change', function() {
+    if (this.checked) {
+    passwordInput.type = 'text';
+    } else {
+    passwordInput.type = 'password';
+    }
+    });
+    });
+</script>

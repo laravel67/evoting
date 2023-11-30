@@ -3,8 +3,8 @@
     <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="{{ asset('user.png') }}" alt="User Image"
             width="50px">
         <div>
-            <p class="app-sidebar__user-name">Murtaki, S.Kom</p>
-            <p class="app-sidebar__user-designation">Web Developer</p>
+            <p class="app-sidebar__user-name">{{ Auth::user()->name }}</p>
+            <p class="app-sidebar__user-designation">{{ Auth::user()->role }}</p>
         </div>
     </div>
     <ul class="app-menu">

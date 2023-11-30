@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(50)->create();
+        User::factory(20)->create();
         Candidate::factory(5)->create();
         Priode::factory()->create([
             'priode' => '2023/2024', // You may modify this based on your needs
@@ -28,8 +28,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory()->create([
-            'name' => "admin",
-            'nisn' => "1902011021",
+            'name' => "Murtaki",
+            'nisn' => "",
+            'username' => "admin",
             'role' => 'admin',
             'gender' => 'Putra',
             'password' => Hash::make('admin'),

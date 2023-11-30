@@ -13,7 +13,7 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function authenticate(Request $request): RedirectResponse
+    public function is_user(Request $request): RedirectResponse
     {
         $credentials = $request->validate([
             'nisn' => ['required', 'exists:users'],
@@ -22,9 +22,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            if (Auth::user()->role === 'admin') {
-                return redirect()->intended(route('dashboard'))->with('success', 'Login berhasil');
-            } elseif (Auth::user()->role === 'user') {
+            if (Auth::user()->role === 'user') {
                 return redirect()->intended(route('home'))->with('success', 'Login berhasil');
             }
             return abort(403, 'Unauthorization');
@@ -33,8 +31,24 @@ class LoginController extends Controller
         // Authentication failed, redirect back to login with an error message
         return redirect('/login')->with('error', 'Invalid credentials');
     }
+    public function is_admin(Request $request): RedirectResponse
+    {
+        $credentials = $request->validate([
+            'username' => ['required', 'exists:users'],
+            'password' => ['required']
+        ]);
 
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            if (Auth::user()->role === 'admin') {
+                return redirect()->intended(route('dashboard'))->with('success', 'Login berhasil');
+            }
+            return abort(403, 'Unauthorization');
+        }
 
+        // Authentication failed, redirect back to login with an error message
+        return redirect('/login')->with('error', 'Invalid credentials');
+    }
     public function logout(Request $request)
     {
         Auth::logout();
