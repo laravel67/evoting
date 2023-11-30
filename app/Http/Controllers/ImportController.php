@@ -20,7 +20,6 @@ class ImportController extends Controller
 
             return redirect()->back()->with('success', 'Data pemilih berhasil di import');
         } catch (\Exception $e) {
-            // Log or handle the exception appropriately
             return redirect()->back()->with('error', 'Error importing data. Please check the file format.');
         }
     }

@@ -27,7 +27,6 @@ class UsersImport implements ToCollection, WithHeadingRow
                     'password' => Hash::make($colect["nisn"])
                 ]);
             } else {
-                // Log or handle the missing keys appropriately
             }
         }
     }
