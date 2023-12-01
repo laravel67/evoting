@@ -29,13 +29,13 @@
          </li>
          <!-- User Menu-->
          <li class="">
-             <a class="dropdown-item">
+             <div class="dropdown-item">
                  <form id="out-form" action="{{ route('logout') }}" method="POST">
                      @csrf
-                     <button class="dropdown-item border-0 btn-out" type="submit"><i class="fa fa-sign-out fa-lg"></i>
+                     <button class="dropdown-item text-light border-0 btn-out" type="submit"><i class="fa fa-sign-out fa-lg"></i>
                          Logout</button>
                  </form>
-             </a>
+             </div>
          </li>
      </ul>
  </header>
