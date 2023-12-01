@@ -1,6 +1,7 @@
 <?php
 
 
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashController;
 use App\Http\Controllers\DataController;
@@ -12,10 +13,10 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ComiteController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\PriodeController;
+use App\Http\Controllers\ResultController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\Api\VotingController;
-use App\Http\Controllers\ResultController;
 
 /*
 |--------------------------------------------------------------------------

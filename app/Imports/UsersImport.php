@@ -13,10 +13,9 @@ use Maatwebsite\Excel\Concerns\RemembersChunkOffset;
 class UsersImport implements ToCollection, WithHeadingRow, WithChunkReading
 {
     use RemembersChunkOffset;
-    /**
-     * @param \Illuminate\Support\Collection $collections
-     * @return void
-     */
+
+    private $successCount = 0;
+
     public function collection(Collection $collections)
     {
         foreach ($collections as $row) {
@@ -25,8 +24,10 @@ class UsersImport implements ToCollection, WithHeadingRow, WithChunkReading
                     'nisn'     => $row['nisn'],
                     'name'     => $row['nama'],
                     'gender'   => $row['jk'],
-                    'password' => Hash::make($row['nisn'])
+                    'password' => Hash::make($row['nisn']),
                 ]);
+
+                $this->successCount++;
             }
         }
     }
@@ -34,5 +35,10 @@ class UsersImport implements ToCollection, WithHeadingRow, WithChunkReading
     public function chunkSize(): int
     {
         return 1000;
+    }
+
+    public function getSuccessCount(): int
+    {
+        return $this->successCount;
     }
 }
