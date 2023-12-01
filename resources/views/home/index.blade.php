@@ -1,8 +1,5 @@
 @extends('home.app')
 @section('content')
-{{-- <div class="page-error tile">
-    <p><a class="btn btn-primary" href="javascript:window.history.back();">Go Back</a></p>
-</div> --}}
     @if (auth()->user()->voting == false)
         <div class="card border-primary">
             <div class="card-header bg-primary text-white">
@@ -42,13 +39,19 @@
                                                     </form>
                                                 </div>
                                                 <div class="col-lg">
-                                                    <a type="button" data-toggle="modal"
-                                                        data-target="#visiMisi{{ $candidate->id }}"
-                                                        class="btn btn-success text-white col">Visi &
-                                                        Misi</a>
-                                                    @include('home.visi-misi')
+                                                    <button class="btn btn-success col" data-toggle="collapse" data-target="#collapse{{ $candidate->id }}" aria-expanded="false"
+                                                        aria-controls="collapse">
+                                                        Tampilkan Visi & Misi
+                                                    </button>
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                    <div id="collapse{{ $candidate->id }}" class="collapse" aria-labelledby="heading" data-parent="#accordion">
+                                                        <div class="card-body">
+                                                            {!! $candidate->visi_misi !!}
+                                                        </div>
+                                                    </div>
+                                                </div>
                                         </div>
                                     </div>
                                 </div>

@@ -7,12 +7,13 @@ use App\Models\Import;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
+ini_set('max_execution_time', '0');
 class ImportController extends Controller
 {
     public function import(Request $request)
     {
         $this->validate($request, [
-            'file' => 'required|mimes:csv,xls,xlsx|max:500000'
+            'file' => 'required|mimes:csv,xls,xlsx'
         ]);
 
         try {

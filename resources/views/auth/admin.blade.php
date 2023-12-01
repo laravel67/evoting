@@ -1,4 +1,4 @@
-<form action="{{ route('auth.admin') }}" method="POST" class="sign-up-form">
+<form action="{{ route('admin') }}" method="POST" class="sign-up-form">
     @csrf
     <img src="{{ asset('images/log.svg') }}" class="image" width="300" height="200">
     <br>

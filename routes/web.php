@@ -31,14 +31,14 @@ use App\Http\Controllers\ResultController;
 
 // Authenticate
 Route::get('/login', [LoginController::class, 'login'])->name('login')->middleware('guest');
-Route::post('/auth/user', [LoginController::class, 'is_user'])->name('auth.user');
-Route::post('/auth/admin', [LoginController::class, 'is_admin'])->name('auth.admin');
+Route::post('/auth/user', [LoginController::class, 'user'])->name('user');
+Route::post('/auth/admin', [LoginController::class, 'admin'])->name('admin');
 // Logout
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::group(['middleware' => ['auth', 'is_role:user']], function () {
     Route::group(['middleware' => ['auth']], function () {
-        Route::get('/home', [HomeController::class, 'index'])->name('home');
+        Route::get('/', [HomeController::class, 'index'])->name('home');
         Route::post('/vote/{id}', [VoteController::class, 'vote'])->name('vote');
     });
 });

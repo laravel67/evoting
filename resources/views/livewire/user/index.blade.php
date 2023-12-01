@@ -12,7 +12,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="tile-body table-responsive-sm table-striped table-sm table table-bordered">
+                <div class="tile-body table-responsive-sm table-striped table-sm table">
                     <table class="table" id="sampleTable">
                         <thead>
                             <tr>
@@ -34,27 +34,19 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->gender }}</td>
                                 <td>
-                                    @if ($user->voting == true)
-                                    <strong class="text-success">sudah voting <i class="fa fa-check"></i></strong>
-                                    <a class="text-success" href="#edit{{ $user->id }}" data-toggle="modal"></a>
-                                    @else
-                                    <strong class="text-secondary">belum voting <i class="fa fa-warning"></i></strong>
-                                    @endif
+                                   @if ($user->voting == true)
+                                        <button class="btn btn-success btn-reset btn-sm"><i class="fa fa-check"></i></button>
+                                        <form id="form-reset" action="{{ route('reset', ['id' => $user->id, 'candidate_id' => $user->candidate_id]) }}"
+                                            method="post">
+                                            @csrf
+                                        </form>
+                                   @else
+                                        <strong class="text-secondary btn btn-sm"><i class="fa fa-warning"></i></strong>
+                                   @endif
                                 </td>
                                 <td>
                                     <div class="btn-group">
                                         <a wire:click="edit({{ $user->id }})" class="btn btn-warning text-light btn-sm">Ubah</a>
-                                        @if ($user->candidate_id == null)
-                                        <a class="btn btn-primary text-light btn-sm disabled">Reset</a>
-                                        @else
-                                        <form id="form-reset"
-                                            action="{{ route('reset', ['id' => $user->id, 'candidate_id' => $user->candidate_id]) }}"
-                                            method="post">
-                                            @csrf
-                                            <button class="btn btn-primary btn-reset btn-sm" type="submit">Reset
-                                            </button>
-                                        </form>
-                                        @endif
                                         <form id="delete-form" action="{{ route('users.destroy', $user->id) }}"
                                             method="post">
                                             @csrf
