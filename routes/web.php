@@ -36,10 +36,10 @@ Route::post('/auth/user', [LoginController::class, 'user'])->name('user');
 Route::post('/auth/admin', [LoginController::class, 'admin'])->name('admin');
 // Logout
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
+Route::get('/', [HomeController::class, 'home'])->name('home')->middleware('auth');
 Route::group(['middleware' => ['auth', 'is_role:user']], function () {
     Route::group(['middleware' => ['auth']], function () {
-        Route::get('/', [HomeController::class, 'index'])->name('home');
+        Route::get('/vote', [HomeController::class, 'index'])->name('voting');
         Route::post('/vote/{id}', [VoteController::class, 'vote'])->name('vote');
     });
 });

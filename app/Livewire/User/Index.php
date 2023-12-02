@@ -32,7 +32,7 @@ class Index extends Component
             ->where(function ($query) {
                 $query->where('name', 'like', '%' . $this->search . '%')
                     ->orWhere('nisn', 'like', '%' . $this->search . '%');
-            })->paginate(15);
+            })->paginate(10);
         return view('livewire.user.index', compact('users'));
     }
 

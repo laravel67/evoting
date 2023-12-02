@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(20)->create();
+        User::factory(30)->create();
         Candidate::factory(5)->create();
         Priode::factory()->create([
             'priode' => '2023/2024', // You may modify this based on your needs

@@ -13,6 +13,11 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+    public function home()
+    {
+        return view('home.home');
+    }
+
     public function index()
     {
         $priode = Priode::latest('created_at')->first();
