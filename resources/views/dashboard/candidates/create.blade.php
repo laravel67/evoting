@@ -1,6 +1,7 @@
 @extends('dashboard.components.layouts.main')
 @section('main')
     <div class="row">
+        <img src="" alt="" srcset="">
         <div class="col-md-12">
             <div class="bg-primary">
                 <h3 class="text-center text-light">{{ $title }}</h3>

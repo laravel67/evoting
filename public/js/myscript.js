@@ -1,41 +1,3 @@
-// Alerts Unntuk Konfirmasi Penghapusan data
-$('.btn-delete').on('click', function(e){
-    e.preventDefault();
-    const form = $('#delete-form')
-    Swal.fire({
-    title: 'Yakin ?',
-    text: "Tindakan ini akan menghapus data secara permanen",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Ya, Hapus',
-    cancelButtonText: 'Batal'
-}).then((result) => {
-  if (result.isConfirmed) {
-     form.submit();
-  }
-})
-});
-
-$('.btn-reset').on('click', function(e){
-    e.preventDefault();
-    const form = $('#form-reset')
-    Swal.fire({
-    title: 'Yakin?',
-    text: "Tindakan ini akan mereset voting,",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Reset Voting',
-    cancelButtonText: 'Batal'
-}).then((result) => {
-  if (result.isConfirmed) {
-     form.submit();
-  }
-})
-});
 // Alerts Unntuk Konfirmasi Logout
 $('.btn-out').on('click', function(e){
     e.preventDefault();
@@ -74,7 +36,6 @@ $('.btn-out-home').on('click', function(e){
     }
 })
 });
-
 // Alerts Unntuk Konfirmasi Voting
 $('.btn-vote').on('click', function(e) {
     e.preventDefault();
@@ -104,7 +65,6 @@ $('.btn-vote').on('click', function(e) {
     });
 });
 
-// Preview Image
 function previewImage(){
     const image      = document.querySelector('#image');
     const imgPreview = document.querySelector('.img-preview');

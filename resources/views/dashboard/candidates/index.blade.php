@@ -8,45 +8,40 @@
             <div class="tile-body">
                 <div class="tile">
                     <div class="row">
-                        <div class="col">
+                        <div class="col-md-5">
                             <a href="{{ route('candidates.create') }}" class="btn btn-success mb-2"> <i
-                                    class="fa fa-pencil"></i>Daftar</a>
-                        </div>
-                        <div class="col-4 mb-3">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">Priode</span>
-                                </div>
-                                <select name="searchPriode" id="searchPriode" class="form-control col-md-4">
-                                    @foreach ($priodes as $priode)
-                                        <option value="{{ $priode->id }}">{{ $priode->priode }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                                    class="fa fa-pencil"></i>Daftar
+                            </a>
+                            <select name="searchPriode" id="searchPriode" class="form-control col-md-4 form-control-sm mb-2">
+                                @foreach ($priodes as $priode)
+                                <option value="{{ $priode->id }}">PRIODE: {{ $priode->priode }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
-                    <table class="table table-striped" id="candidatesTable">
-                        <thead>
-                            <tr>
-                                <th>Gambar</th>
-                                <th>Nama Kandidate</th>
-                                <th>BEM</th>
-                                <th>Priode/Masa Jabatan</th>
-                                <th>Visi & Misi</th>
-                                <th>Total Suara</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($candidates as $candidate)
+                    <div class="tile-body table-responsive-sm table-striped table">
+                        <table class="table" id="sampleTable">
+                            <thead>
+                                <tr>
+                                    <th>Gambar</th>
+                                    <th>Nama Kandidate</th>
+                                    <th>BEM</th>
+                                    <th>Priode/Masa Jabatan</th>
+                                    <th>Visi & Misi</th>
+                                    <th>Total Suara</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($candidates as $candidate)
                                 <tr>
                                     <td>
                                         <a href="#" data-toggle="modal" data-target="#show{{ $candidate->id }}">
                                             @if ($candidate->image)
-                                                <img src="{{ asset('storage/' . $candidate->image) }}"
-                                                    alt="{{ $candidate->image }}" class="img-fluid" width="50">
+                                            <img src="{{ asset('storage/' . $candidate->image) }}" alt="{{ $candidate->image }}"
+                                                class="img-fluid" width="50">
                                             @else
-                                                <img src="{{ asset('user.png') }}" width="50">
+                                            <img src="{{ asset('user.png') }}" width="50">
                                             @endif
                                         </a>
                                     </td>
@@ -55,27 +50,26 @@
                                     <td>{{ $candidate->priode->priode }}</td>
                                     <th>
                                         <button data-toggle="modal" data-target="#showVisiMisi{{ $candidate->id }}"
-                                            class="btn btn-success btn-sm">Tampilkan</button>
+                                            class="btn btn-success btn-sm"><i class="fa fa-eye"></i></button>
                                         @include('dashboard.candidates.show')
                                     </th>
                                     <th>{{ $candidate->votes }} Suara</th>
                                     <th>
                                         <div class="btn-group">
-                                            <form id="delete-form"
-                                                action="{{ route('candidates.destroy', $candidate->id) }}" method="POST">
+                                            <form id="delete-form" action="{{ route('candidates.destroy', $candidate->id) }}" method="POST">
                                                 @csrf
                                                 @method('delete')
                                                 <a class="btn btn-warning text-light btn-sm"
-                                                    href="{{ route('candidates.edit', $candidate->id) }}">Ubah</a>
-                                                <button class="btn btn-delete btn-danger btn-sm"
-                                                    type="submit">Hapus</button>
+                                                    href="{{ route('candidates.edit', $candidate->id) }}"><i class="fa fa-edit"></i></a>
+                                                <button class="btn btn-delete btn-danger btn-sm" type="submit"><i class="fa fa-trash"></i></button>
                                             </form>
                                         </div>
                                     </th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

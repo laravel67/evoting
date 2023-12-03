@@ -40,4 +40,10 @@ class VoteController extends Controller
         ]);
         return back()->with('success', 'Reset voting berhasil');
     }
+
+    public function lantik($id)
+    {
+        Candidate::where('id', $id)->update(['lantik' => true]);
+        return back()->with('success', 'Pelanktikan berhasil');
+    }
 }

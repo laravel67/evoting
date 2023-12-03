@@ -13,11 +13,11 @@
                                 (auth()->user()->gender == 'Putra' && $candidate->gender == 'Putra') ||
                                     (auth()->user()->gender == 'Putri' && $candidate->gender == 'Putri'))
                                 <div class="col-lg-4 mb-2">
-                                    <div class="card border-primary">
+                                    <div class="card">
                                         <div class=" d-flex justify-content-center mt-2">
                                             @if ($candidate->image)
                                                 <img src="{{ asset('storage/' . $candidate->image) }}"
-                                                    alt="{{ $candidate->image }}" class="img-thumbnail">
+                                                    alt="{{ $candidate->image }}" class="img-fluid">
                                             @else
                                                 <img src="{{ asset('cabem.png') }}" width="200">
                                             @endif
@@ -79,8 +79,8 @@
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <lottie-player src="https://lottie.host/67d95457-e0db-4be3-adcc-e0177b7ea072/CVSDOQjm54.json"
-                        background="##ffffff" speed="0.7" style="width: 500px; height: 500px" loop autoplay
+                    <lottie-player src="https://lottie.host/4a6e5249-ba6d-41a5-88c4-696e76d20577/9UXDCW4nxT.json"
+                        background="##ffffff" speed="0.7" style="width: 400px; height: 400px" loop autoplay
                         direction="1" mode="normal">
                     </lottie-player>
                 </div>

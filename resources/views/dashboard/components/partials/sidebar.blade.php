@@ -1,16 +1,23 @@
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
-    <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="{{ asset('user.png') }}" alt="User Image"
-            width="50px">
+    <div class="app-sidebar__user">
+        <div>
+            <img class="app-sidebar__user-avatar" src="{{ asset('profile3.jpeg') }}" alt="User Image" style="width: 50px; height:50px;">
+        </div>
         <div>
             <p class="app-sidebar__user-name">{{ Auth::user()->name }}</p>
-            <p class="app-sidebar__user-designation">{{ Auth::user()->role }}</p>
+            <p class="app-sidebar__user-designation">{{ Auth::user()->username }}</p>
         </div>
     </div>
     <ul class="app-menu">
         <li>
             <a class="app-menu__item {{ Request::is('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
                 <i class="app-menu__icon fa fa-home"></i><span class="app-menu__label">Dashboard</span>
+            </a>
+        </li>
+        <li>
+            <a class="app-menu__item {{ Request::is('dashboard/profile') ? 'active' : '' }}" href="{{ route('profile') }}">
+                <i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Profile</span>
             </a>
         </li>
         <div>

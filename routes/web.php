@@ -17,6 +17,7 @@ use App\Http\Controllers\ResultController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\Api\VotingController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,7 @@ Route::post('/auth/admin', [LoginController::class, 'admin'])->name('admin');
 // Logout
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/', [HomeController::class, 'home'])->name('home')->middleware('auth');
+
 Route::group(['middleware' => ['auth', 'is_role:user']], function () {
     Route::group(['middleware' => ['auth']], function () {
         Route::get('/vote', [HomeController::class, 'index'])->name('voting');
@@ -49,6 +51,7 @@ Route::group(['middleware' => ['auth', 'is_role:admin']], function () {
     Route::get('/dashboard', [DashController::class, 'index'])->name('dashboard');
     Route::post('/import', [ImportController::class, 'import'])->name('import');
     Route::get('/dashboard/master-data', [DataController::class, 'index'])->name('data');
+    Route::get('/dashboard/profile', [ProfileController::class, 'index'])->name('profile');
     // Route resource
     Route::resource('/dashboard/users', UserController::class)->except('show', 'edit', 'store', 'update', 'create');
     Route::resource('/dashboard/jabatans', JabatanController::class)->except('index', 'show', 'create', 'edit');
@@ -68,4 +71,5 @@ Route::group(['middleware' => ['auth', 'is_role:admin']], function () {
 
     Route::get('/dashboard/hasil', [ResultController::class, 'index'])->name('result');
     Route::get('/result', VotingController::class . '@getResult')->name('api.getResult');
+    Route::post('/lantik/{id}', VoteController::class . '@lantik')->name('lantik');
 });

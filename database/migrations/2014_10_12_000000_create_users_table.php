@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignId('candidate_id')->nullable();
             $table->string('password');
             $table->string('role')->default('user');
+            $table->string('image')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

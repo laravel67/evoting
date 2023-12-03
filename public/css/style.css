@@ -15936,14 +15936,12 @@ be a descendant of the grid when it is being dragged.
     display: flex;
 }
 
-.messanger .sender input[type="text"] {
-    -webkit-box-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-    border: 1px solid #009688;
-    outline: none;
-    padding: 5px 10px;
-}
+ .messanger .sender input.text {
+     flex: 1;
+     border: 1px solid #009688;
+     outline: none;
+     padding: 5px 10px;
+ }
 
 .messanger .sender button {
     border-radius: 0;
