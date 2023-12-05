@@ -7,12 +7,12 @@
                     <div class="info">
                         @if ($user->image)
                             <div class="text-center">
-                                <img class="user-img img-fluid rounded-circle" src="{{ asset('storage/' . $user->image) }}"
+                                <img class="user-img img-fluid rounded-circle" src="{{ asset('profile-user/' . $user->image) }}"
                                     style="width: 200px; height: 200px;">
                             </div>
                         @else
                             <div class="text-center">
-                                <img class="user-img img-fluid rounded-circle" src="{{ asset('profile3.jpeg') }}"
+                                <img class="user-img img-fluid rounded-circle" src="{{ asset('icons8-user-94.png') }}"
                                 style="width: 200px; height: 200px;">
                             </div>
                         @endif
@@ -41,7 +41,7 @@
         <div class="col-md-9">
             <div class="tile">
                 <div class="row">
-                    <div class="col mb-3">
+                    <div class="col-md mb-3">
                         <div class="card">
                             <div class="card-header text-light bg-primary">
                                 <h5> <i class="fa fa-edit"></i> Update Profile</h5>
@@ -75,19 +75,19 @@
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    {{-- <div class="form-group">
+                                    <div class="form-group mb-2">
                                         <label>Gambar</label>
-                                        <input wire:model='image' type="file" class="form-control-file">
+                                        <input wire:model="image" type="file" class="form-control-file mb-2">
                                         @if ($image)
-                                        <img width="200" class="img-fluid img-preview" src="{{ $image->temporaryUrl() }}">
+                                            <img width="200" class="img-fluid img-preview" src="{{ $image->temporaryUrl() }}">
                                         @endif
-                                    </div> --}}
+                                    </div>
                                     <button type="submit" class="btn btn-primary col-12">Update</button>
                                 </form>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         @livewire('profile.user')
                     </div>
                 </div>

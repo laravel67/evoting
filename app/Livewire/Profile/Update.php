@@ -2,7 +2,9 @@
 
 namespace App\Livewire\Profile;
 
+use App\Models\User;
 use Livewire\Component;
+use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -11,16 +13,12 @@ class Update extends Component
 {
     use WithFileUploads;
 
-    public $success;
-    public $name;
-    public $username;
-    // public $image;
+    public $success, $name, $username, $image;
 
     public function mount()
     {
         $this->name = Auth::user()->name;
         $this->username = Auth::user()->username;
-        // $this->image = Auth::user()->image;
     }
 
     public function render()
@@ -29,7 +27,6 @@ class Update extends Component
             'user' => Auth::user()
         ]);
     }
-
     public function update()
     {
         $user = Auth::user();
@@ -37,42 +34,39 @@ class Update extends Component
         $rules = [
             'name' => 'required|string|max:255',
             'username' => 'required|unique:users,username,' . $user->id,
-            // 'image' => 'image|max:1024',
+            'image' => 'file|image|max:1024',
         ];
 
         if ($this->username !== $user->username) {
             $rules['username'] = 'required|unique:users';
         }
-
-        // // Check if $this->image is an instance of UploadedFile
-        // if ($this->image instanceof \Illuminate\Http\UploadedFile) {
-        //     // If a new image is provided, delete the old image if it exists
-        //     if ($user->image) {
-        //         Storage::delete($user->image);
-        //     }
-
-        //     // Store the new image
-        //     $this->image = $this->image->storeAs('profile-users', 'profile-' . $user->id . '.' . $this->image->extension(), 'public');
-        // } else {
-        //     // If $this->image is not an instance of UploadedFile, it means it's a string (existing image path)
-        //     $this->image = $user->image;
-        // }
-
         $this->validate($rules);
-
+        if ($this->image) {
+            if ($user->image) {
+                Storage::delete('profile-user/' . $user->image);
+            }
+            $imageName = pathinfo($this->image->getClientOriginalName(), PATHINFO_FILENAME);
+            $imageName .= '.' . $this->image->getClientOriginalExtension();
+            $this->image->storeAs('profile-user', $imageName);
+            $this->image = $imageName;
+        } else {
+            $this->image = $user->image;
+        }
         $user->update([
             'name' => $this->name,
             'username' => $this->username,
-            // 'image' => $this->image, // Use the existing image if no new one is provided
+            'image' => $this->image,
         ]);
 
         $this->success = 'Update profile berhasil';
         $this->resetForm();
     }
 
+
     public function resetForm()
     {
         $this->name = Auth::user()->name;
         $this->username = Auth::user()->username;
+        $this->image = null;
     }
 }

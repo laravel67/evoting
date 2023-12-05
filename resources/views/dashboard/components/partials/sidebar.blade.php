@@ -2,7 +2,12 @@
 <aside class="app-sidebar">
     <div class="app-sidebar__user">
         <div>
-            <img class="app-sidebar__user-avatar" src="{{ asset('profile3.jpeg') }}" alt="User Image" style="width: 50px; height:50px;">
+            @if (Auth::user()->image)
+                <img class="app-sidebar__user-avatar" src="{{ asset('profile-user/' . Auth::user()->image) }}"
+                    style="width: 50px; height:50px;">
+            @else
+            <img width="48" height="48" src="{{ asset('icons8-user-94.png') }}"/>
+            @endif
         </div>
         <div>
             <p class="app-sidebar__user-name">{{ Auth::user()->name }}</p>
